@@ -5,21 +5,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Source code is ready'
+                echo 'Source code checked out from GitHub'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'docker --version'
-                bat 'docker build -t devops-task-2 .'
+                bat 'node --version'
+                bat 'npm --version'
+                bat 'npm install'
+                echo 'Build stage completed'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'node --check app.js'
-                echo 'Application syntax test passed'
+                bat 'npm test'
             }
         }
 
@@ -32,7 +33,10 @@ pipeline {
 
     post {
         success {
-            echo 'Jenkins CI/CD pipeline completed successfully'
+            echo 'CI/CD pipeline completed successfully'
+        }
+        failure {
+            echo 'Pipeline failed. Check Console Output'
         }
     }
 }
