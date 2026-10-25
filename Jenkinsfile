@@ -3,9 +3,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                echo 'Source code is ready'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building the application'
                 bat 'docker --version'
                 bat 'docker build -t devops-task-2 .'
             }
@@ -13,9 +18,8 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Testing the application'
-                bat 'node --version'
-                bat 'npm --version'
+                bat 'node --check app.js'
+                echo 'Application syntax test passed'
             }
         }
 
@@ -28,10 +32,7 @@ pipeline {
 
     post {
         success {
-            echo 'CI/CD pipeline completed successfully'
-        }
-        failure {
-            echo 'Pipeline failed. Check Console Output'
+            echo 'Jenkins CI/CD pipeline completed successfully'
         }
     }
 }
