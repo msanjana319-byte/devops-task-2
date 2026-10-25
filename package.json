@@ -1,0 +1,11 @@
+
+{
+  "name": "devops-task-2",
+  "version": "1.0.0",
+  "description": "Node.js app for Jenkins CI/CD pipeline",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node --check app.js"
+  }
+}
